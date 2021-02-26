@@ -1,4 +1,4 @@
-#A little Safety Tool for Poe
+# A little Safety Tool for Poe
 
 This tool takes the iteminfo of the item you are about to roll on and will check if you already hit your disired mod. If so it will kinda block your input by moving the mouse away and report with a lil beep.
 
