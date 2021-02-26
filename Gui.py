@@ -4,7 +4,7 @@ from itertools import islice
 from model import *
 from pynput.mouse import Listener
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QApplication, QWidget, QAction, QLineEdit, QPushButton, QListWidget, QCheckBox
+from PyQt5.QtWidgets import QComboBox, QLabel,QApplication, QWidget, QAction, QLineEdit, QPushButton, QListWidget, QCheckBox
 
 
 class App(QWidget):
@@ -26,33 +26,53 @@ class App(QWidget):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left,self.top,self.width,self.height)
 
-      
+        #Label_Min
+        self.label_min = QLabel(self)
+        self.label_min.setText("Minimum")
+        self.label_min.move(20,20)    
 
-        #Range_Min_Textbox
+        #Textbox_Min
         self.textbox_min = QLineEdit(self)
-        self.textbox_min.move(20,60)
+        self.textbox_min.move(20,40)
         self.textbox_min.resize(60,20)
 
-        #Range_Max_Textbox
-        self.textbox_max = QLineEdit(self)
-        self.textbox_max.move(20,90)
-        self.textbox_max.resize(60,20)
+        #Label_Depth
+        self.label_depth = QLabel(self)
+        self.label_depth.setText("Depth")
+        self.label_depth.move(20,80)    
+        
+        #Textbox_Depth
+        self.comb_depth = QComboBox(self)
+        self.comb_depth.addItems(["1","2","3","4","5","6","7"])
+        self.comb_depth.currentIndexChanged.connect(self.selectionchange)
+        self.comb_depth.move(20,100)
+        self.comb_depth.resize(60,20)
 
-        #Mod_Textbox
+        #Label_Mod
+        self.label_mod = QLabel(self)
+        self.label_mod.setText("Desired Mod")
+        self.label_mod.move(20,140)    
+
+        #Textbox_Mod
         self.textbox_mod = QLineEdit(self)
-        self.textbox_mod.move(20,120)
-        self.textbox_mod.resize(280,40)
+        self.textbox_mod.move(20,160)
+        self.textbox_mod.resize(280,20)
 
-        #Modlist
+        #Label_Modlist
+        self.label_modlist = QLabel(self)
+        self.label_modlist.setText("Modlist")
+        self.label_modlist.move(20,200)  
+
+        #Textbox_Modlist
         self.modlist = QListWidget(self)
-        self.modlist.move(20,200)
+        self.modlist.move(20,220)
         self.modlist.resize(280,300)
 
         #Save Button
         self.button = QPushButton('Save Mod', self)
         self.button.move(20,550)
         self.button.resize(70,50)
-        self.button.clicked.connect(self.on_click)
+        self.button.clicked.connect(self.on_click_save)
 
         #Delete Button
         self.button_del = QPushButton('Delete Mod', self)
@@ -61,7 +81,6 @@ class App(QWidget):
         self.button_del.clicked.connect(self.on_click_del)
 
         self.textbox_min.setText("1")
-        self.textbox_max.setText("10")
         self.textbox_mod.setText("to maximum Life")
 
         #Checkbox
@@ -80,6 +99,8 @@ class App(QWidget):
         else:
             Model.poe_listener(False, self.listener)
     
+    def selectionchange(self,i):
+        model.item_depth = i + 1
     
     def on_click_del(self):
         row = self.modlist.currentRow()
@@ -87,13 +108,14 @@ class App(QWidget):
         del model.requirements[next(islice(model.requirements,row,None))]
         print(model.requirements)
 
-    def on_click(self):
+    def on_click_save(self):
+        if self.textbox_mod.text():
+            textbox_value_mod = self.textbox_mod.text()
+            minimum = {"minimum": float(self.textbox_min.text())}
 
-        textbox_value_mod = self.textbox_mod.text()
-        min_max = {"minimum": float(self.textbox_min.text()), "maximum": float(self.textbox_max.text())}
-
-        self.modlist.addItem(str(min_max["minimum"]) +" - "+  str(min_max["maximum"]) +" : " + textbox_value_mod)
-        model.requirements[textbox_value_mod] = min_max
-        self.textbox_min.setText("")
-        self.textbox_max.setText("")
-        self.textbox_mod.setText("")
+            self.modlist.addItem(str(minimum["minimum"]) +" : " + textbox_value_mod)
+            model.requirements[textbox_value_mod] = minimum
+            self.textbox_min.setText("")
+            self.textbox_mod.setText("")
+        else:
+            pass
