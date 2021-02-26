@@ -50,7 +50,7 @@ class Model():
                 for i in data.mods:
                     tmp_mod = " ".join(i)
                     if tmp_mod in requirements:
-                        Model.test_mod_values(requirements[tmp_mod], data.values[int(list(requirements.keys()).index(tmp_mod))][0])
+                        Model.test_mod_values(requirements[tmp_mod], data.values[int(data.mods.index(i))][0])
 
             except IndexError: # thrown by empty/none poe clipboards not satiesfied requirements
                 pass

@@ -8,7 +8,6 @@ class item_data():
         self.item_depth=item_depth
         self.values = []
         self.mods = []
-        #self.requirements = {}
         self.clipboard = pyperclip.paste()
 
     def process_item_data(self):
