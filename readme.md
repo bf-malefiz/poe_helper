@@ -25,6 +25,6 @@ Socket this into a Citadel on your Atlas to increase the Tier of Maps and reveal
 
 ###### Examples for Mods
 >
-- ~~40~~ to maximum Life
-- Unique Bosses have ~~10%~~ chance to drop an additional Silver Coin
+- ~~40~~ to maximum Life  = to maximum Life 
+- Unique Bosses have ~~10%~~ chance to drop an additional Silver Coin = Unique Bosses have chance to drop an additional Silver Coin
 >
