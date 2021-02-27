@@ -41,7 +41,7 @@ Socket this into a Citadel on your Atlas to increase the Tier of Maps and reveal
 = **Unique Bosses have chance to drop an additional Silver Coin**
 >
 
-![Preview](https://imgur.com/F08yj7n)
+![Preview](https://i.imgur.com/F08yj7n.jpg)
 
 ## Credits
 
