@@ -1,47 +1,36 @@
 # A little safety tool for Path of Exile item crafting
 
-*First: This tool only automates checking your clipboard and blocks your input from overrolling. There are no inputs being made to poe-server by this tool.*
+        This tool only automates checking your clipboard and blocks your input from overrolling.
+        There are no inputs being made to poe-server by this tool. This tool is not an autoscroller. 
+        You will still experience the pain of rolling thousand of alts GGG intended you to roll
 
-This tool takes the iteminfo of the item you are about to roll on and will check if you already hit your desired mod. If so it will kinda block your input by moving the mouse away and report with a sound.
+This tool takes the iteminfo of the item you are about to roll on and will check if you already hit your desired mod. If so it will kinda block your input by moving the mouse away and report with a sound. I prefer to move the mouse away instead of blocking it, so I'm still able to use it.
 
 ##### starting
 - you can either use the provided .exe to simply click and run the program or.. 
-- if you want to build it yourself or run it raw make sure you have python3.7+ installed
+- if you want to build it yourself:
+        - have python3.7+ installed
         - clone the repo
+        - install required libaries and execute main via console
 
         py -m pip install -r requirements.txt
         py main.py
 
 ##### usage
-- You need to specify amounts of sections you want to skip (depth) because every Iteminfo has a different amount of sections. On the following Watchstone the Depth is [2] 
-I tried to add the respective items to the depths but there are many missing or differ because of implicites. If you notice major mistakes please let me know.
-
-###### Watchstone Clipboard
->Rarity: Magic\
-Platinum Tirn's End Watchstone of the Prophet\
--------- [Depth = 1]\
-Item Level: 85\
--------- [Depth = 2]\
-Unique Bosses have 10.2% chance to drop an additional Silver Coin\
--------- [Depth = 3]\
-Only the souls trapped within can bear witness to the Maven's dark proclivities, and they dare not speak up.\
--------- [Depth = 4]\
-Socket this into a Citadel on your Atlas to increase the Tier of Maps and reveal hidden Maps in that Citadel's Region. You can only socket one Crimson, Viridian, Cobalt or Golden Watchstone into each Citadel.
->
-
 - at this time the mod you're entering needs to be case-senstive!
+        *Tip: copy the mod from [poe.db](http://poe.db)*
 - the mod needs to be a full description without numbers
-- activate the listener after adding your mods to the list and wait for the beep
+- activate the listener after adding your mods to the list and start rolling
+- if your mod doesn't have a value just leave it empty, those mods will be taged (raw) in modlist
+any occurence will trigger the block
 
-###### Examples for Mods
+###### Examples for Mod by removing their numbers
 >
-- ~~40~~ to maximum Life  
-= **to maximum Life**
-- Unique Bosses have ~~10%~~ chance to drop an additional Silver Coin 
-= **Unique Bosses have chance to drop an additional Silver Coin**
+- ~~40~~ to maximum Life  = **to maximum Life**
+- Unique Bosses have ~~10%~~ chance to drop an additional Silver Coin = **Unique Bosses have chance to drop an additional Silver Coin**
 >
 
-![Preview](https://i.imgur.com/F08yj7n.jpg)
+![Preview](https://i.imgur.com/Z90yRH9.png)
 
 ## Credits
 
