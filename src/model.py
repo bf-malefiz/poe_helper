@@ -45,14 +45,15 @@ class Model():
             keyboard.release(Key.ctrl)
         else:
             try:
-                data = item_data(item_depth)
+                data = item_data()
                 data.process_item_data()
                 for i in data.mods:
                     tmp_mod = " ".join(i)
-                    if tmp_mod in requirements:
+                    if tmp_mod in requirements and requirements[tmp_mod]:
                         Model.test_mod_values(requirements[tmp_mod], data.values[int(data.mods.index(i))][0])
-
-            except IndexError: # thrown by empty/none poe clipboards not satiesfied requirements
+                    elif tmp_mod in requirements:
+                        Model.block_input()
+            except IndexError: # thrown by empty/none poe clipboards not satisfied requirements
                 pass
 
 
